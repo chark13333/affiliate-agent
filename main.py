@@ -17,8 +17,13 @@ from linebot.v3.messaging import (
 from linebot.v3 import WebhookParser
 from linebot.v3.webhooks import MessageEvent, TextMessageContent
 
+import logging
 from agent import process_message
 from config import LINE_CHANNEL_ACCESS_TOKEN, LINE_CHANNEL_SECRET
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+logger.info(f"TOKEN prefix: {LINE_CHANNEL_ACCESS_TOKEN[:10]}... suffix: ...{LINE_CHANNEL_ACCESS_TOKEN[-10:]}")
 
 app = FastAPI(title="Affiliate Agent Bot")
 _line_config = Configuration(access_token=LINE_CHANNEL_ACCESS_TOKEN)
